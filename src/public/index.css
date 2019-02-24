@@ -37,9 +37,9 @@ body {
     align-content: center;
     background: #14BCAB;
   }
-  .c1, .c2, .c4, .c5, .c7, .c8 {
+  .c0, .c1, .c3, .c4, .c6, .c7 {
      border-right:  7px solid #0FA192;
   }
-  .c1, .c2, .c3, .c4, .c5, .c6 {
+  .c0, .c1, .c2, .c3, .c4, .c5 {
     border-bottom:  7px solid #0FA192;
  }
