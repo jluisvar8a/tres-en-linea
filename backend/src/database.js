@@ -7,3 +7,5 @@ mongoose.connect('mongodb://localhost/tres-en-linea', {
 })
 .then(db => console.log('DB is connected'))
 .catch(err => console.error(err))
+
+const db = mongoose.connection
