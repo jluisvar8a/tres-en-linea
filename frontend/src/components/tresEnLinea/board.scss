@@ -1,0 +1,18 @@
+.contenido {
+    grid-area: contenido;
+  }
+
+  .contenido {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    justify-content: center;
+    align-content: center;
+    background: #14BCAB;
+  }
+  .c0, .c1, .c3, .c4, .c6, .c7 {
+     border-right:  7px solid #0FA192;
+  }
+  .c0, .c1, .c2, .c3, .c4, .c5 {
+    border-bottom:  7px solid #0FA192;
+ }

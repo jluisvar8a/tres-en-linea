@@ -8,7 +8,7 @@ const app = express()
 require('./database')
 
 // Setting
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT || 3001)
 //app.use(express.static(__dirname + '/views'))
 
 // Static files

@@ -52,5 +52,11 @@ router.get('/game/:id', async (req, res) => {
    
 })
 
+router.get('/', async (req, res) => {
+   res.json({ response: 'tres en linea api' })
+   
+   
+})
+
 
 module.exports = router
