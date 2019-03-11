@@ -7,7 +7,7 @@ router.get('/game',(req, res) => {
 })
 
 router.post('/game', async (req, res) => {
-   const { userOne, userTwo, board, winner } = req.body
+   const { userOne, userTwo, board, winner, turn } = req.body
    const errors = []
    if (!userOne ){
       errors.push({ text: 'Must enter the user one'})
@@ -18,38 +18,56 @@ router.post('/game', async (req, res) => {
    if (!board){
       errors.push({ text: 'The board must be stored'})
    }
+   if (!turn){
+      errors.push({ text: 'The turn must be stored'})
+   }
    if (errors.length > 0)  {
       res.render({
          errors,
          userOne,
-         userTwo
+         userTwo,
+         turn
       })
    }else {
-      const newGame = new Game ({ userOne, userTwo, board, winner }) 
-      await newGame.save((err) => {
+      const newGame = new Game ({ userOne, userTwo, board, winner, turn }) 
+      await newGame.save((err, response) => {
          if(err) res.json(err)
-         res.json({"message": "Succesfully Inserted"})
+         res.json({"message": "Succesfully inserted", "_id":response._id})
       })
    }
 })
 
 router.put('/game/:id', async (req, res) => {
-   const { userOne, userTwo, board, winner } = req.body
-   await Game.findByIdAndUpdate(req.params.id, { userOne, userTwo, board, winner }, (err)=> {
+   let params = {}
+   if (req.body.board) {
+      params.board = req.body.board
+   }
+   if (req.body.winner) {
+      params.winner = req.body.winner
+   }
+   if (req.body.turn) {
+      params.turn  = req.body.turn
+   }
+   await Game.findOneAndUpdate({ _id: req.params.id }, {$set:params}, { new:true }, (err, doc)=> {
       if(err) res.json(err)
-      res.json({"message": "Succesfully Inserted"})
+      res.json({"message": "Succesfully updated", "board": doc.board, "turn": doc.turn})
    }) 
    
 })
 
-router.get('/game/:id', async (req, res) => {
-   const game = await Game.findById(req.params.id, (err)=>{
+router.get('/unfinishedGames', async (req, res) => {
+   console.log(req.body)
+   await Game.find({ winner:''} , (err, doc)=>{
       if(err) res.json(err)
-      
+      res.json({ response: doc })
    })
-   res.json({ response: game })
-   
-   
+})
+
+router.get('/game/:id', async (req, res) => {
+   await Game.findById({_id:req.params.id}, (err, doc)=>{
+      if(err) res.json(err)
+      res.json({ response: doc })
+   })
 })
 
 router.get('/', async (req, res) => {
