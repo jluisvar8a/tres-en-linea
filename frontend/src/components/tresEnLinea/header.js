@@ -61,8 +61,9 @@ class Header extends Component {
     const userTwoValid = this.checkUser('userTwo')
     if (userOneValid && userTwoValid){
       this.props.onNewGame(userOne, userTwo)
+      this.toggleUserForm()
     }
-    this.toggleUserForm()
+    
   }
 
   selectGame = (event) => {
@@ -95,12 +96,14 @@ class Header extends Component {
               <div className="userFormContainer">
                 <div className="usersForm">
                   <h2>Enter users</h2>  
-                  <div>
+                  <div className="inputContainer">
                     <input type="text" placeholder="User One" onKeyUp={this.usersValue} id="userOne"/>
+                    <br/>
                     {this.state.userOneErr && <label className="userError">this field is required</label>}
                   </div> 
-                  <div>
+                  <div className="inputContainer">
                     <input type="text" placeholder="User Two" onKeyUp={this.usersValue} id="userTwo"/>
+                    <br/>
                     {this.state.userTwoErr && <label className="userError">this field is required</label>}
                   </div> 
                   <button onClick={this.startNewGame}>Start</button>
