@@ -56,7 +56,6 @@ router.put('/game/:id', async (req, res) => {
 })
 
 router.get('/unfinishedGames', async (req, res) => {
-   console.log(req.body)
    await Game.find({ winner:''} , (err, doc)=>{
       if(err) res.json(err)
       res.json({ response: doc })
