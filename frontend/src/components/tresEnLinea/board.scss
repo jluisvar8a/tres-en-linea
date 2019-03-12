@@ -4,15 +4,29 @@
 
   .contenido {
     display: grid;
-    grid-template-columns: repeat(3, 150px);
-    grid-template-rows: repeat(3, 150px);
+    grid-template-columns: repeat(3, 130px);
+    grid-template-rows: repeat(3, 130px);
     justify-content: center;
     align-content: center;
-    background: #3B5BB3;
+    //background: #3B5BB3;
+  }
+
+  .c0, .c1, .c2, .c3, .c4, .c5, .c6, .c7, .c8{
+    font-size: 70px;
+     display: flex;
+     align-content: center;
+     justify-content: center;
+     align-items: center;
+     color: #FFFFFF;
   }
   .c0, .c1, .c3, .c4, .c6, .c7 {
-     border-right:  7px solid #0FA192;
+     border-right:  5px solid #fff;
   }
   .c0, .c1, .c2, .c3, .c4, .c5 {
-    border-bottom:  7px solid #0FA192;
+    border-bottom:  5px solid #fff;
+ }
+
+ .turn {
+   font-size: 28px;
+   color: #FFFFFF;
  }

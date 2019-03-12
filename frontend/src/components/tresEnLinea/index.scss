@@ -8,6 +8,11 @@ body {
 
 }
 
+h1 {
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
 h2 {
     color: #fff
 }
@@ -33,6 +38,7 @@ input {
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 5px;
+    color: #000000;
 }
 
 select {
@@ -41,7 +47,10 @@ select {
     padding: 5px;
     margin-bottom: 5px;
     min-width: 200px;
+    color: #000000;
 }
+
+
 
 .container {
     display: grid;

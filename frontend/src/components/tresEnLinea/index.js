@@ -75,6 +75,7 @@ class TresEnLinea extends Component {
         userOne: data.userOne,
         userTwo: data.userTwo,
         turn: data.turn,
+        gameId: data._id,
         boardDisabled: false,
       })
     }).catch((err) => {

@@ -12,12 +12,13 @@ class Board extends Component {
     userOne: PropTypes.string,
     userTwo: PropTypes.string,
     onUpdateWinner: PropTypes.func,
-    turn: PropTypes.string
+    turn: PropTypes.string,
+    winner: ''
   }
 
   state = {
     board: this.props.board,
-    turn: this.props.turn
+    turn: this.props.turn || 1
   }
 
   static getDerivedStateFromProps(props, state){
@@ -39,7 +40,6 @@ class Board extends Component {
     const newBoard = Object.assign([], this.state.board)
     
     if (newBoard[item] !== 0) {
-      alert('must select another cell')
       return 
     }
     newBoard[item] = this.state.turn
@@ -82,19 +82,19 @@ class Board extends Component {
     const { turn } = this.state
     const userWinner = turn === 1 ? userTwo : userOne
     if (numItem === 1){
-      alert('Winer is '+ userWinner)
+      this.setState({ winner: 'Winer is '+ userWinner })
       this.props.onDisableBoard()
       this.props.onUpdateWinner(numItem)
       return null
     }
     if (numItem === 2){
-      alert('Winer is ' + userWinner)
+      this.setState({ winner: 'Winer is '+ userWinner })
       this.props.onDisableBoard()
       this.props.onUpdateWinner(numItem)
       return null
     }
     if (numItem === 3){
-      alert('The game is Draw!')
+      this.setState({ winner: 'The game is Draw!' })      
       this.props.onDisableBoard()
       this.props.onUpdateWinner(numItem)
       return null
@@ -113,14 +113,13 @@ class Board extends Component {
   }
 
   render() {
-    const { board, turn } = this.state
+    const { board, turn, winner } = this.state
     const { userOne, userTwo, disabled } = this.props
     return (
       board.length > 0 && 
         <React.Fragment>
-          <div className="turns">
-            <div className="btn">{turn === 1 ? `${userOne} is your turn` : `${userTwo} is your turn`}</div>
-          </div>
+          {!winner && <div className="turn">{turn === 1 ? `${userOne} is your turn` : `${userTwo} is your turn`}</div>}
+          {winner && <div className="turn">{winner}</div>}
           <div className="item contenido">
             {board.map((value, key) => {
               return (<div className={`item c${key}`} key={key} onClick={()=>{!disabled && this.handleClickBoard(key)}}>{value === 1 ? 'X' : value === 2 ? 'O' : '' }</div>)

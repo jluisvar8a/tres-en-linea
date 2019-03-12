@@ -83,6 +83,7 @@ class Header extends Component {
     const { gamesList } = this.state
     return (
         <div className="header">
+        <h1>TIC-TAC-TOC</h1>
           <div className="newGame">
             {(!this.state.showUsersForm && !this.state.showRestoreGameForm) &&
               <React.Fragment>
